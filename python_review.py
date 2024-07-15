@@ -3,7 +3,7 @@ import random
 temperatures = []
 for i in range(7):
     temperatures.append(random.randint(26, 41))
-days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saurday"]
+days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sautday"]
 good_days_count=0
 highest_temp=25
 lowest_temp=41
@@ -11,7 +11,6 @@ highest_temp_day=""
 lowest_temp_day=""
 for i in range(len(temperatures)):
     if temperatures[i] % 2 == 0:
-        print(days[i])
         good_days_count += 1
     if temperatures[i] < lowest_temp:
         lowest_temp = temperatures[i]
@@ -28,7 +27,7 @@ average=count/7
 above_avg=[]
 for i in range(len(temperatures)):
 	if temperatures[i]>average:
-		above_avg.append(temperatures[i])
+		above_avg.append(days[i])
 print("the weather report:")
 for i in range(7):
 	print(days[i],":",temperatures[i])
