@@ -21,8 +21,6 @@ def add_comment(youtube,username,comment_text):
 	youtube["comments"][username]=comment_text
 	return youtube
 
-
-
 new_youtube_video = create_youtube_video("0OP 101 with Loai!", "This tutorial helps you successfully review most of the material learned so far in Y1 Summer and Yearlong, so we can start the Y2 Summer super strong and elevate you to a whole new level in CS by the end of the summer!!!")
 new_youtube_video = add_comment(new_youtube_video, "Loai", "YO000 first video ya'11! Fame, here we come")
 new_youtube_video = add_comment(new_youtube_video, "Lyel", "Thanks! Been looking for something like this for so long.")
