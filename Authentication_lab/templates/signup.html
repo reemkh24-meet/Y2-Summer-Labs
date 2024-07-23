@@ -1,16 +1,22 @@
  <!DOCTYPE html>
 <html>
-    <head>
-         <title>Fortune teller</title>
-    </head>
+<head>
+    <title>Fortune teller</title>
+</head>
     <body>
 
-        <h1>Enter your email and password</h1>
-        <form action="/" method = "POST">
-              <input type="text" name = "email" placeholder="email">
-             <input type="text" name = "password" placeholder="password">
-             <input type="submit" value="sign up">
-        </form>
-        <p>Already have an account? <a href="/signin">Sign in here</a>.</p>
-    </body>
+    <h1 style="font-size: 60px; text-align: center;">Sign up</h1>
+    <form style="font-size: 60px; text-align: center;" action="/" method = "POST">
+        <input type="text" name = "email" placeholder="email">
+        <input type="text" name = "password" placeholder="password">
+        <input type="text" name = "username" placeholder="username">
+        <input type="text" name = "full_name" placeholder="full name">
+
+        <input type="submit" value="sign up">
+    </form>
+    <p>Already have an account?<a href="{{url_for('signIn')}}">sign in</a></p>
+
+
+
+</body>
 </html>

@@ -1,17 +1,24 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Fortune teller</title>
 </head>
-<body>
+<body >
 
-    <h1>Enter your email and password</h1>
-    <form action="{{url_for('signIn')}}" method = "POST">
+    <h1 style="font-size: 60px; text-align: center;">Sign in</h1>
+    <form style="font-size: 60px; text-align: center;" action="{{url_for('signIn')}}" method = "POST">
         <input type="text" name = "email" placeholder="email">
         <input type="text" name = "password" placeholder="password">
         <input type="submit" value="login">
     </form>
-    <p>do you want to creat an account? <a href="/">Sign up here</a>.</p>
+<br>
 
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+    <p>Want to creat an account<a href="{{url_for('signIn')}}">sign up</a></p>
 
 </body>
+</html>

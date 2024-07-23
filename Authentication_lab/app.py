@@ -1,86 +1,97 @@
-from flask import Flask, render_template, request, redirect, url_for
-from flask import session as login_session 
+from flask import Flask, render_template,url_for,redirect,request, session 
 import pyrebase
 
-
-Config = {
-
-  "apiKey": "AIzaSyCgCJr5z24r8Hq1OF-EaHPSyIpR_NAEqcg",
-
-  "authDomain": "auth-lab-f25dd.firebaseapp.com",
-
-  "projectId": "auth-lab-f25dd",
-
-  "storageBucket": "auth-lab-f25dd.appspot.com",
-
-  "messagingSenderId": "962415959144",
-
-  "appId": "1:962415959144:web:c25931fa288a359c002fdd",
-
-  "databaseURL":""
-
+firebaseConfig = {
+    "apiKey": "AIzaSyAUiR-mC2rhoczvAKefYfS0tzHHXbu8Gag",
+    "authDomain": "reem-meet2025.firebaseapp.com",
+    "projectId": "reem-meet2025",
+    "storageBucket": "reem-meet2025.appspot.com",
+    "messagingSenderId": "466005672092",
+    "appId": "1:466005672092:web:280c43af818398d09ded59",
+    "measurementId": "G-7CBEZG9DLN",
+    "databaseURL": "https://reem-meet2025-default-rtdb.europe-west1.firebasedatabase.app/"
 }
 
-firebase = pyrebase.initialize_app(Config)
+firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = "PASSWORD"
+db = firebase.database()
+app = Flask(__name__, template_folder='templates', static_folder='static')
+app.config['SECRET_KEY'] = "Amir"
 
 @app.route('/', methods = ['GET', 'POST'])
 def signUp():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
+        username = request.form['username']
+        full_name = request.form['full_name']
         try:
-            print("hello")
-            login_session['user'] = auth.create_user_with_email_and_password(email, password)
-            login_session['quote'] = ""
-            login_session['quotes'] = []
+            user = {'email' : email, 'username': username, 'full_name': full_name}
+            session['user'] = auth.create_user_with_email_and_password(email, password)
+            db.child('Users').child(session['user']['localId']).set(user)
             return redirect(url_for('home'))
         except:
             error = "Authentication failed"
+            return redirect(url_for("error"))
     return render_template("signup.html")
 
 
-@app.route('/signin',methods=['GET','POST'])
+@app.route('/sign-in', methods=['GET','POST'])
 def signIn():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
         try:
-            login_session['user'] = auth.sign_in_with_email_and_password(email, password)
-            login_session['quote'] = ""
-            login_session['quotes'] = []
+            session['user'] = auth.sign_in_with_email_and_password(email, password)
             return redirect(url_for('home'))
         except:
             error = "Authentication failed"
+            return redirect(url_for("error"))
     return render_template("signin.html")
+
+
 @app.route('/home', methods = ['GET','POST'])
 def home():
     if request.method == 'POST':
-        print(login_session['quote'])
         quote = request.form['quote']
-        login_session['quote'] = quote
+        speaker = request.form['speaker']
+        session['speaker'] = speaker
+        session['quote'] = quote
+        quote_info= {'said_by' : speaker,'quote': quote, 'uid' : session['user']['localId']}
+        db.child('Quotes').push(quote_info)
         return redirect(url_for('thanks'))
     return render_template('home.html')
+
+
+
 @app.route('/display')
 def display():
-    quotes = login_session['quotes']
-    print(login_session['quotes'])
-    return render_template("display.html", quotes = quotes)
+    return render_template("display.html")
+
+
+
+
 @app.route('/thanks')
 def thanks():
-    quote = login_session['quote']
-    login_session['quotes'].append(quote)
-    login_session.modified = True
-    print(login_session['quotes'])
-    return render_template("thanks.html",quote = quote)
+    if session['user'] != None:
+        quote = session['quote']
+        speaker = session['speaker']
+        return render_template("thanks.html",quote = quote, speaker = speaker)
+    else:
+        return redirect(url_for('signIn'))
+
+
+
 @app.route('/sign-out')
 def signOut():
-    login_session['user']=None
+    session['user']=None
     auth.current_user = None
     return redirect(url_for('signIn'))
 
+
+
+@app.route('/error.html')
+def error():
+    return render_template('error.html')
 if __name__ == '__main__':
     app.run(debug=True)
