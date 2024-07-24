@@ -16,7 +16,7 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 db = firebase.database()
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.config['SECRET_KEY'] = "Amir"
+app.config['SECRET_KEY'] = "PASSWORD"
 
 @app.route('/', methods = ['GET', 'POST'])
 def signUp():

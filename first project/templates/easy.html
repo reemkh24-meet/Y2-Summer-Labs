@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Science Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .quiz-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+        color: #333;
+    }
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #FF69B4;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #FF4500;
+    }
+
+    #score {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Computer Science Quiz</h2>
+        <form id="quiz-form" action="/easy" method="POST">
+            <div class="question">
+                <h3>Question 1:</h3>
+                <p>What language is known as the "language of the web"?</p>
+                <input type="hidden" name="correct_answer_1" value="HTML">
+                <input type="text" name="answer_1" placeholder="Enter your answer">
+            </div>
+            
+            <div class="question">
+                <h3>Question 2:</h3>
+                <p>Which programming language is often used for artificial intelligence?</p>
+                <input type="hidden" name="correct_answer_2" value="Python">
+                <input type="text" name="answer_2" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 3:</h3>
+                <p>What does CSS stand for in web development?</p>
+                <input type="hidden" name="correct_answer_3" value="Cascading Style Sheets">
+                <input type="text" name="answer_3" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 4:</h3>
+                <p>Which data structure uses First In, First Out (FIFO) principle?</p>
+                <input type="hidden" name="correct_answer_4" value="Queue">
+                <input type="text" name="answer_4" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 5:</h3>
+                <p>What does SQL stand for in database management?</p>
+                <input type="hidden" name="correct_answer_5" value="Structured Query Language">
+                <input type="text" name="answer_5" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 6:</h3>
+                <p>What type of programming language uses symbolic instructions rather than binary code?</p>
+                <input type="hidden" name="correct_answer_6" value="High-level">
+                <input type="text" name="answer_6" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 7:</h3>
+                <p>Which HTML tag is used to define a hyperlink?</p>
+                <input type="hidden" name="correct_answer_7" value="a">
+                <input type="text" name="answer_7" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 8:</h3>
+                <p>What is the process of finding errors and fixing them in a program called?</p>
+                <input type="hidden" name="correct_answer_8" value="Debugging">
+                <input type="text" name="answer_8" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 9:</h3>
+                <p>Which programming language is used primarily for front-end web development?</p>
+                <input type="hidden" name="correct_answer_9" value="JavaScript">
+                <input type="text" name="answer_9" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 10:</h3>
+                <p>What data type in Python is used to store a sequence of characters?</p>
+                <input type="hidden" name="correct_answer_10" value="String">
+                <input type="text" name="answer_10" placeholder="Enter your answer">
+                <input type="submit" value="Submit Answers">
+            </div>
+        </form>
+    </div>
+   <script>
+        // Function to handle quiz submission
+        document.getElementById('quiz-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            var score = calculateScore(); // Calculate score function (you need to implement this)
+
+            // Store score in sessionStorage
+            sessionStorage.setItem('quizScore', score);
+
+            // Redirect to results page or home page
+            window.location.href = '/result'; // Replace with your results page URL
+        });
+
+        // Function to calculate the score based on correct answers
+        function calculateScore() {
+            var score = 0;
+            // Example: Check each answer and update score
+            var answer1 = document.querySelector('input[name="answer_1"]').value.trim().toLowerCase();
+            var correctAnswer1 = document.querySelector('input[name="correct_answer_1"]').value.toLowerCase();
+            if (answer1 === correctAnswer1) {
+                score++;
+            }
+
+            var answer2 = document.querySelector('input[name="answer_2"]').value.trim().toLowerCase();
+            var correctAnswer2 = document.querySelector('input[name="correct_answer_2"]').value.toLowerCase();
+            if (answer2 === correctAnswer2) {
+                score++;
+            }
+
+            // Add more checks for other questions as needed
+
+            return score;
+        }
+    </script>
+</body>
+</html>

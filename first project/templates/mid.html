@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .quiz-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+        color: #333;
+    }
+
+    .question {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+        background-color: #FF69B4;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #FF4500;
+    }
+
+    #score {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Quiz</h2>
+        <form id="quiz-form" action="/mid" method="POST">
+            <div class="question">
+                <h3>Question 1:</h3>
+                <p>?</p>
+                <input type="hidden" name="correct_answer_1" value="Paris">
+                <input type="text" name="answer_1" placeholder="Enter your answer">
+            </div>
+            
+            <div class="question">
+                <h3>Question 2:</h3>
+                <p>What is the largest planet in our solar system?</p>
+                <input type="hidden" name="correct_answer_2" value="Jupiter">
+                <input type="text" name="answer_2" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 3:</h3>
+                <p>What is the chemical symbol for water?</p>
+                <input type="hidden" name="correct_answer_3" value="H2O">
+                <input type="text" name="answer_3" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 4:</h3>
+                <p>Who wrote 'Romeo and Juliet'?</p>
+                <input type="hidden" name="correct_answer_4" value="Shakespeare">
+                <input type="text" name="answer_4" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 5:</h3>
+                <p>What is the largest ocean on Earth?</p>
+                <input type="hidden" name="correct_answer_5" value="Pacific">
+                <input type="text" name="answer_5" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 6:</h3>
+                <p>Which planet is known as the Red Planet?</p>
+                <input type="hidden" name="correct_answer_6" value="Mars">
+                <input type="text" name="answer_6" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 7:</h3>
+                <p>What is the chemical symbol for oxygen?</p>
+                <input type="hidden" name="correct_answer_7" value="O">
+                <input type="text" name="answer_7" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 8:</h3>
+                <p>Who painted the Mona Lisa?</p>
+                <input type="hidden" name="correct_answer_8" value="Da Vinci">
+                <input type="text" name="answer_8" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 9:</h3>
+                <p>What is the largest mammal?</p>
+                <input type="hidden" name="correct_answer_9" value="Blue Whale">
+                <input type="text" name="answer_9" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 10:</h3>
+                <p>Who discovered gravity?</p>
+                <input type="hidden" name="correct_answer_10" value="Newton">
+                <input type="text" name="answer_10" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 11:</h3>
+                <p>What is the currency of Japan?</p>
+                <input type="hidden" name="correct_answer_11" value="Yen">
+                <input type="text" name="answer_11" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 12:</h3>
+                <p>Who invented the telephone?</p>
+                <input type="hidden" name="correct_answer_12" value="Bell">
+                <input type="text" name="answer_12" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 13:</h3>
+                <p>What is the largest desert in the world?</p>
+                <input type="hidden" name="correct_answer_13" value="Sahara">
+                <input type="text" name="answer_13" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 14:</h3>
+                <p>What is the chemical symbol for gold?</p>
+                <input type="hidden" name="correct_answer_14" value="Au">
+                <input type="text" name="answer_14" placeholder="Enter your answer">
+            </div>
+
+            <div class="question">
+                <h3>Question 15:</h3>
+                <p>What is the capital of Japan?</p>
+                <input type="hidden" name="correct_answer_15" value="Tokyo">
+                <input type="text" name="answer_15" placeholder="Enter your answer">
+                <input type="submit" value="Submit Answers">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
