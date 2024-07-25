@@ -50,13 +50,13 @@
     <div class="result-container">
         <h2>Quiz Results</h2>
         <div id="score"></div>
+        your score is: {{score}}
         <div class="reset-link">
             <a href="/home">Return to Home</a>
         </div>
     </div>
 
-    <script>
-        // Function to display the score from sessionStorage
+  <!--   <script>
         document.addEventListener('DOMContentLoaded', function () {
             var scoreElement = document.getElementById('score');
             var quizScore = sessionStorage.getItem('quizScore');
@@ -66,7 +66,7 @@
                 scoreElement.textContent = 'Score: 0';
             }
         });
-    </script>
+    </script> -->
 </body>
 </html>
 

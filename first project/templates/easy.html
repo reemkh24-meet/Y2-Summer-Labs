@@ -131,7 +131,7 @@
                 <p>What data type in Python is used to store a sequence of characters?</p>
                 <input type="hidden" name="correct_answer_10" value="String">
                 <input type="text" name="answer_10" placeholder="Enter your answer">
-                <input type="submit" value="Submit Answers">
+                <input type="submit" onclick="calculateScore()" value="Submit Answers">
             </div>
         </form>
     </div>
@@ -156,69 +156,79 @@
 
         function calculateScore() {
             var score=db.child('Users').child(session['user']['localId']).child("score").get().val()
-
+        
 
             var answer1 = document.querySelector('input[name="answer_1"]').value.trim().toLowerCase();
             var correctAnswer1 = document.querySelector('input[name="correct_answer_1"]').value.toLowerCase();
             if (answer1 === correctAnswer1) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer2 = document.querySelector('input[name="answer_2"]').value.trim().toLowerCase();
             var correctAnswer2 = document.querySelector('input[name="correct_answer_2"]').value.toLowerCase();
             if (answer2 === correctAnswer2) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer3 = document.querySelector('input[name="answer_3"]').value.trim().toLowerCase();
             var correctAnswer3 = document.querySelector('input[name="correct_answer_3"]').value.toLowerCase();
             if (answer3 === correctAnswer3) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer4 = document.querySelector('input[name="answer_4"]').value.trim().toLowerCase();
             var correctAnswer4 = document.querySelector('input[name="correct_answer_4"]').value.toLowerCase();
             if (answer4 === correctAnswer4) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer5 = document.querySelector('input[name="answer_5"]').value.trim().toLowerCase();
             var correctAnswer5 = document.querySelector('input[name="correct_answer_5"]').value.toLowerCase();
             if (answer5 === correctAnswer5) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer6 = document.querySelector('input[name="answer_6"]').value.trim().toLowerCase();
             var correctAnswer6 = document.querySelector('input[name="correct_answer_6"]').value.toLowerCase();
             if (answer6 === correctAnswer6) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer7 = document.querySelector('input[name="answer_7"]').value.trim().toLowerCase();
             var correctAnswer7 = document.querySelector('input[name="correct_answer_7"]').value.toLowerCase();
             if (answer7 === correctAnswer7) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer8 = document.querySelector('input[name="answer_8"]').value.trim().toLowerCase();
             var correctAnswer8 = document.querySelector('input[name="correct_answer_8"]').value.toLowerCase();
             if (answer8 === correctAnswer8) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer9 = document.querySelector('input[name="answer_9"]').value.trim().toLowerCase();
             var correctAnswer9 = document.querySelector('input[name="correct_answer_9"]').value.toLowerCase();
             if (answer9 === correctAnswer9) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
             var answer10 = document.querySelector('input[name="answer_10"]').value.trim().toLowerCase();
             var correctAnswer10 = document.querySelector('input[name="correct_answer_10"]').value.toLowerCase();
             if (answer10 === correctAnswer10) {
-                score++;
+                db.child('Users').child(session['user']['localId']).update({"score": score++})
+
             }
 
-            return score;
+            return score++;
         }
     </script>
 </body>

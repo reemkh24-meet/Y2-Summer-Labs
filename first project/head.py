@@ -52,6 +52,7 @@ def signup():
         username = request.form['username']
         try:
             user = auth.create_user_with_email_and_password(email, password)
+            print(user)
             session["user"]=user
             user_data = {
                 'username': username,
@@ -84,33 +85,30 @@ def home():
 def result():
     score=db.child('Users').child(session['user']['localId']).child("score").get().val()
     return render_template("result.html",score=score)
-    
+
 @app.route('/easy', methods=['GET', 'POST'])
 def easy():
     if request.method == "POST":
         # Get all form data into a dictionary
+
         form_data = request.form.to_dict()
 
+        print(session)
         user_id = session['user']['localId']
-        user = db.child('Users').child(user_id).get().val()
+
 
         score = 0
 
-        # Loop through each question and check answers
-        for i in range(1, 16):
+        for i in range(1, 10):
             question_key = f"answer_{i}"
             correct_answer_key = f"correct_answer_{i}"
 
             user_answer = form_data.get(question_key, "").strip()
             correct_answer = form_data.get(correct_answer_key, "").strip()
-
-            # Compare user's answer with correct answer
+            print(user_answer)
             if user_answer.lower() == correct_answer.lower():
                 score += 1
-
-        # Update the score in the database
         db.child('Users').child(user_id).update({'score': score})
-
         return redirect(url_for("result"))
 
     return render_template("easy.html")
@@ -129,18 +127,16 @@ def mid():
 
         score = 0
 
-        # Loop through each question and check answers
         for i in range(1, 16):
             question_key = f"answer_{i}"
             correct_answer_key = f"correct_answer_{i}"
 
             user_answer = form_data.get(question_key, "").strip()
             correct_answer = form_data.get(correct_answer_key, "").strip()
-
+            print(user_answer)
             if user_answer.lower() == correct_answer.lower():
                 score += 1
 
-        # Update the score in the database
         db.child('Users').child(user_id).update({'score': score})
 
         return redirect(url_for("result"))
