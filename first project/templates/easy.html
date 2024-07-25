@@ -155,7 +155,8 @@
         });
 
         function calculateScore() {
-            var score = 0;
+            var score=db.child('Users').child(session['user']['localId']).child("score").get().val()
+
 
             var answer1 = document.querySelector('input[name="answer_1"]').value.trim().toLowerCase();
             var correctAnswer1 = document.querySelector('input[name="correct_answer_1"]').value.toLowerCase();
