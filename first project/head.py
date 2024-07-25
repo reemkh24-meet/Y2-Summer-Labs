@@ -52,6 +52,7 @@ def signup():
         username = request.form['username']
         try:
             user = auth.create_user_with_email_and_password(email, password)
+            session["user"]=user
             user_data = {
                 'username': username,
                 'email': email,
@@ -68,10 +69,9 @@ def signup():
 
     return render_template("signup.html")
 
-
-
-    # return render_template("signupin.html")
-
+@app.route('/action_page.php', methods=['GET','POST'])
+def show_contact_form():
+    return render_template('thank_you.html')
 
 @app.route('/home',methods=['GET', 'POST'])
 def home():
@@ -82,9 +82,9 @@ def home():
 
 @app.route('/result',methods=['GET', 'POST'])
 def result():
-
     score=db.child('Users').child(session['user']['localId']).child("score").get().val()
     return render_template("result.html",score=score)
+    
 @app.route('/easy', methods=['GET', 'POST'])
 def easy():
     if request.method == "POST":
@@ -137,7 +137,6 @@ def mid():
             user_answer = form_data.get(question_key, "").strip()
             correct_answer = form_data.get(correct_answer_key, "").strip()
 
-            # Compare user's answer with correct answer
             if user_answer.lower() == correct_answer.lower():
                 score += 1
 
@@ -178,5 +177,10 @@ def hard():
 
     return render_template("hard.html")
 
+@app.route('/sign-out')
+def signOut():
+    session['user']=None
+    auth.current_user = None
+    return redirect(url_for('signup'))
 if __name__ == '__main__':
     app.run(debug=True)

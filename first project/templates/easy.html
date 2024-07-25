@@ -66,14 +66,14 @@
             <div class="question">
                 <h3>Question 1:</h3>
                 <p>What language is known as the "language of the web"?</p>
-                <input type="hidden" name="correct_answer_1" value="HTML">
+                <input type="hidden" name="correct_answer_1" value="html">
                 <input type="text" name="answer_1" placeholder="Enter your answer">
             </div>
             
             <div class="question">
                 <h3>Question 2:</h3>
                 <p>Which programming language is often used for artificial intelligence?</p>
-                <input type="hidden" name="correct_answer_2" value="Python">
+                <input type="hidden" name="correct_answer_2" value="python">
                 <input type="text" name="answer_2" placeholder="Enter your answer">
             </div>
 
@@ -135,23 +135,28 @@
             </div>
         </form>
     </div>
-   <script>
-        // Function to handle quiz submission
-        document.getElementById('quiz-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent form submission
-            var score = calculateScore(); // Calculate score function (you need to implement this)
 
-            // Store score in sessionStorage
-            sessionStorage.setItem('quizScore', score);
+    <script>
+        function validateForm() {
+            var inputs = document.querySelectorAll('input[type="text"]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    alert('Please fill in all answers before submitting.');
+                    return false; 
+                }
+            }
+            return true; 
+        }
 
-            // Redirect to results page or home page
-            window.location.href = '/result'; // Replace with your results page URL
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); 
+            }
         });
 
-        // Function to calculate the score based on correct answers
         function calculateScore() {
             var score = 0;
-            // Example: Check each answer and update score
+
             var answer1 = document.querySelector('input[name="answer_1"]').value.trim().toLowerCase();
             var correctAnswer1 = document.querySelector('input[name="correct_answer_1"]').value.toLowerCase();
             if (answer1 === correctAnswer1) {
@@ -164,7 +169,53 @@
                 score++;
             }
 
-            // Add more checks for other questions as needed
+            var answer3 = document.querySelector('input[name="answer_3"]').value.trim().toLowerCase();
+            var correctAnswer3 = document.querySelector('input[name="correct_answer_3"]').value.toLowerCase();
+            if (answer3 === correctAnswer3) {
+                score++;
+            }
+
+            var answer4 = document.querySelector('input[name="answer_4"]').value.trim().toLowerCase();
+            var correctAnswer4 = document.querySelector('input[name="correct_answer_4"]').value.toLowerCase();
+            if (answer4 === correctAnswer4) {
+                score++;
+            }
+
+            var answer5 = document.querySelector('input[name="answer_5"]').value.trim().toLowerCase();
+            var correctAnswer5 = document.querySelector('input[name="correct_answer_5"]').value.toLowerCase();
+            if (answer5 === correctAnswer5) {
+                score++;
+            }
+
+            var answer6 = document.querySelector('input[name="answer_6"]').value.trim().toLowerCase();
+            var correctAnswer6 = document.querySelector('input[name="correct_answer_6"]').value.toLowerCase();
+            if (answer6 === correctAnswer6) {
+                score++;
+            }
+
+            var answer7 = document.querySelector('input[name="answer_7"]').value.trim().toLowerCase();
+            var correctAnswer7 = document.querySelector('input[name="correct_answer_7"]').value.toLowerCase();
+            if (answer7 === correctAnswer7) {
+                score++;
+            }
+
+            var answer8 = document.querySelector('input[name="answer_8"]').value.trim().toLowerCase();
+            var correctAnswer8 = document.querySelector('input[name="correct_answer_8"]').value.toLowerCase();
+            if (answer8 === correctAnswer8) {
+                score++;
+            }
+
+            var answer9 = document.querySelector('input[name="answer_9"]').value.trim().toLowerCase();
+            var correctAnswer9 = document.querySelector('input[name="correct_answer_9"]').value.toLowerCase();
+            if (answer9 === correctAnswer9) {
+                score++;
+            }
+
+            var answer10 = document.querySelector('input[name="answer_10"]').value.trim().toLowerCase();
+            var correctAnswer10 = document.querySelector('input[name="correct_answer_10"]').value.toLowerCase();
+            if (answer10 === correctAnswer10) {
+                score++;
+            }
 
             return score;
         }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz</title>
+<title>History Quiz</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -61,115 +61,158 @@
 </head>
 <body>
     <div class="quiz-container">
-        <h2>Quiz</h2>
-        <form id="quiz-form" action="/mid" method="POST">
+        <h2>History Quiz</h2>
+        <form id="quiz-form" action="/submit" method="POST">
             <div class="question">
                 <h3>Question 1:</h3>
-                <p>?</p>
-                <input type="hidden" name="correct_answer_1" value="Paris">
+                <p>Who was the first President of the United States?</p>
+                <input type="hidden" name="correct_answer_1" value="George Washington">
                 <input type="text" name="answer_1" placeholder="Enter your answer">
             </div>
             
             <div class="question">
                 <h3>Question 2:</h3>
-                <p>What is the largest planet in our solar system?</p>
-                <input type="hidden" name="correct_answer_2" value="Jupiter">
+                <p>Which ancient civilization built the Great Pyramids of Giza?</p>
+                <input type="hidden" name="correct_answer_2" value="Egyptians">
                 <input type="text" name="answer_2" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 3:</h3>
-                <p>What is the chemical symbol for water?</p>
-                <input type="hidden" name="correct_answer_3" value="H2O">
+                <p>In which year did Christopher Columbus first reach the Americas?</p>
+                <input type="hidden" name="correct_answer_3" value="1492">
                 <input type="text" name="answer_3" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 4:</h3>
-                <p>Who wrote 'Romeo and Juliet'?</p>
-                <input type="hidden" name="correct_answer_4" value="Shakespeare">
+                <p>Who was the longest-reigning monarch in British history?</p>
+                <input type="hidden" name="correct_answer_4" value="Queen Victoria">
                 <input type="text" name="answer_4" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 5:</h3>
-                <p>What is the largest ocean on Earth?</p>
-                <input type="hidden" name="correct_answer_5" value="Pacific">
+                <p>What was the significance of the Magna Carta, signed in 1215?</p>
+                <input type="hidden" name="correct_answer_5" value="Limited the power of the English monarchy">
                 <input type="text" name="answer_5" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 6:</h3>
-                <p>Which planet is known as the Red Planet?</p>
-                <input type="hidden" name="correct_answer_6" value="Mars">
+                <p>Who was the leader of the Soviet Union during World War II?</p>
+                <input type="hidden" name="correct_answer_6" value="Joseph Stalin">
                 <input type="text" name="answer_6" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 7:</h3>
-                <p>What is the chemical symbol for oxygen?</p>
-                <input type="hidden" name="correct_answer_7" value="O">
+                <p>Which battle is considered the turning point of the American Civil War?</p>
+                <input type="hidden" name="correct_answer_7" value="Battle of Gettysburg">
                 <input type="text" name="answer_7" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 8:</h3>
-                <p>Who painted the Mona Lisa?</p>
-                <input type="hidden" name="correct_answer_8" value="Da Vinci">
+                <p>Who was the first woman to fly solo across the Atlantic Ocean?</p>
+                <input type="hidden" name="correct_answer_8" value="Amelia Earhart">
                 <input type="text" name="answer_8" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 9:</h3>
-                <p>What is the largest mammal?</p>
-                <input type="hidden" name="correct_answer_9" value="Blue Whale">
+                <p>What event marked the beginning of World War I?</p>
+                <input type="hidden" name="correct_answer_9" value="Assassination of Archduke Franz Ferdinand">
                 <input type="text" name="answer_9" placeholder="Enter your answer">
             </div>
 
             <div class="question">
                 <h3>Question 10:</h3>
-                <p>Who discovered gravity?</p>
-                <input type="hidden" name="correct_answer_10" value="Newton">
+                <p>Who founded the Mongol Empire in the 13th century?</p>
+                <input type="hidden" name="correct_answer_10" value="Genghis Khan">
                 <input type="text" name="answer_10" placeholder="Enter your answer">
-            </div>
-
-            <div class="question">
-                <h3>Question 11:</h3>
-                <p>What is the currency of Japan?</p>
-                <input type="hidden" name="correct_answer_11" value="Yen">
-                <input type="text" name="answer_11" placeholder="Enter your answer">
-            </div>
-
-            <div class="question">
-                <h3>Question 12:</h3>
-                <p>Who invented the telephone?</p>
-                <input type="hidden" name="correct_answer_12" value="Bell">
-                <input type="text" name="answer_12" placeholder="Enter your answer">
-            </div>
-
-            <div class="question">
-                <h3>Question 13:</h3>
-                <p>What is the largest desert in the world?</p>
-                <input type="hidden" name="correct_answer_13" value="Sahara">
-                <input type="text" name="answer_13" placeholder="Enter your answer">
-            </div>
-
-            <div class="question">
-                <h3>Question 14:</h3>
-                <p>What is the chemical symbol for gold?</p>
-                <input type="hidden" name="correct_answer_14" value="Au">
-                <input type="text" name="answer_14" placeholder="Enter your answer">
-            </div>
-
-            <div class="question">
-                <h3>Question 15:</h3>
-                <p>What is the capital of Japan?</p>
-                <input type="hidden" name="correct_answer_15" value="Tokyo">
-                <input type="text" name="answer_15" placeholder="Enter your answer">
                 <input type="submit" value="Submit Answers">
             </div>
         </form>
     </div>
+    <script>
+        function validateForm() {
+            var inputs = document.querySelectorAll('input[type="text"]');
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value.trim() === '') {
+                    alert('Please fill in all answers before submitting.');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+
+        // Optional: Add a listener to prevent accidental page reload
+        document.getElementById('quiz-form').addEventListener('submit', function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); // Prevent form submission if validation fails
+            }
+        });
+        
+        // Function to calculate the score based on correct answers
+        function calculateScore() {
+            var score = 0;
+            // Example: Check each answer and update score
+            var answer1 = document.querySelector('input[name="answer_1"]').value.trim().toLowerCase();
+            var correctAnswer1 = document.querySelector('input[name="correct_answer_1"]').value.toLowerCase();
+            if (answer1 === correctAnswer1) {
+                score++;
+            }
+
+            var answer2 = document.querySelector('input[name="answer_2"]').value.trim().toLowerCase();
+            var correctAnswer2 = document.querySelector('input[name="correct_answer_2"]').value.toLowerCase();
+            if (answer2 === correctAnswer2) {
+                score++;
+            }
+            var answer3 = document.querySelector('input[name="answer_3"]').value.trim().toLowerCase();
+            var correctAnswer3 = document.querySelector('input[name="correct_answer_3"]').value.toLowerCase();
+            if (answer3 === correctAnswer3) {
+                score++;
+            }
+            var answer4 = document.querySelector('input[name="answer_4"]').value.trim().toLowerCase();
+            var correctAnswer4 = document.querySelector('input[name="correct_answer_4"]').value.toLowerCase();
+            if (answer4 === correctAnswer4) {
+                score++;
+            }
+            var answer5= document.querySelector('input[name="answer_5"]').value.trim().toLowerCase();
+            var correctAnswer5= document.querySelector('input[name="correct_answer_5"]').value.toLowerCase();
+            if (answer5 === correctAnswer5) {
+                score++;
+            }
+            var answer6= document.querySelector('input[name="answer_6"]').value.trim().toLowerCase();
+            var correctAnswer6 = document.querySelector('input[name="correct_answer_6"]').value.toLowerCase();
+            if (answer6 === correctAnswer6) {
+                score++;
+            }
+            var answer7 = document.querySelector('input[name="answer_7"]').value.trim().toLowerCase();
+            var correctAnswer7 = document.querySelector('input[name="correct_answer_7"]').value.toLowerCase();
+            if (answer7 === correctAnswer7) {
+                score++;
+            }
+            var answer8 = document.querySelector('input[name="answer_8"]').value.trim().toLowerCase();
+            var correctAnswer8 = document.querySelector('input[name="correct_answer_8"]').value.toLowerCase();
+            if (answer8=== correctAnswer8) {
+                score++;
+            }
+            var answer9 = document.querySelector('input[name="answer_9"]').value.trim().toLowerCase();
+            var correctAnswer9 = document.querySelector('input[name="correct_answer_9"]').value.toLowerCase();
+            if (answer9 === correctAnswer9) {
+                score++;
+            }
+            var answer10 = document.querySelector('input[name="answer_10"]').value.trim().toLowerCase();
+            var correctAnswer10 = document.querySelector('input[name="correct_answer_10"]').value.toLowerCase();
+            if (answer10 === correctAnswer10) {
+                score++;
+            }
+
+            return score;
+        }
+    </script>
 </body>
 </html>
-
