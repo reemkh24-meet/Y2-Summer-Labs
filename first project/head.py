@@ -58,7 +58,7 @@ def signup():
                 'username': username,
                 'email': email,
                 'password':password,
-                'score':score
+                # 'score':score
             }
             db.child('Users').child(session['user']['localId']).set(user_data)
             return redirect(url_for('home'))
@@ -81,9 +81,9 @@ def home():
     else:
         return redirect(url_for('signin'))
 
-@app.route('/result',methods=['GET', 'POST'])
-def result():
-    score=db.child('Users').child(session['user']['localId']).child("score").get().val()
+@app.route('/result/<topic>',methods=['GET', 'POST'])
+def result(topic):
+    score=db.child('score').child(session['user']['localId']).child(topic).get().val()
     return render_template("result.html",score=score)
 
 @app.route('/easy', methods=['GET', 'POST'])
@@ -98,7 +98,7 @@ def easy():
 
 
         score = 0
-
+        db.child('score').child(user_id).child("CS").set({'score': score})
         for i in range(1, 10):
             question_key = f"answer_{i}"
             correct_answer_key = f"correct_answer_{i}"
@@ -108,8 +108,9 @@ def easy():
             print(user_answer)
             if user_answer.lower() == correct_answer.lower():
                 score += 1
-        db.child('Users').child(user_id).update({'score': score})
-        return redirect(url_for("result"))
+        db.child('score').child(user_id).child("CS").set({'score': score})
+        return redirect("/result/CS")
+
 
     return render_template("easy.html")
 
@@ -126,7 +127,7 @@ def mid():
         user = db.child('Users').child(user_id).get().val()
 
         score = 0
-
+        db.child('score').child(user_id).child("history").set({'score': score})
         for i in range(1, 16):
             question_key = f"answer_{i}"
             correct_answer_key = f"correct_answer_{i}"
@@ -137,22 +138,24 @@ def mid():
             if user_answer.lower() == correct_answer.lower():
                 score += 1
 
-        db.child('Users').child(user_id).update({'score': score})
+        db.child('score').child(user_id).child("history").update({'score': score})
 
-        return redirect(url_for("result"))
+        return redirect("/result/history")
+
 
     return render_template("mid.html")
 
 @app.route('/hard', methods=['GET', 'POST'])
 def hard():
+
     if request.method == "POST":
         # Get all form data into a dictionary
         form_data = request.form.to_dict()
 
         user_id = session['user']['localId']
         user = db.child('Users').child(user_id).get().val()
-
-        score = 0
+        score=0
+        db.child('score').child(user_id).child("music").set({'score': score})
 
         # Loop through each question and check answers
         for i in range(1, 16):
@@ -167,9 +170,9 @@ def hard():
                 score += 1
 
         # Update the score in the database
-        db.child('Users').child(user_id).update({'score': score})
+        db.child('score').child(user_id).child("music").update({'score': score})
 
-        return redirect(url_for("result"))
+        return redirect("/result/music")
 
     return render_template("hard.html")
 
@@ -179,4 +182,4 @@ def signOut():
     auth.current_user = None
     return redirect(url_for('signup'))
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=4000)
